@@ -40,7 +40,3 @@ def three_pal(a):
                         if i + j + k == a:
                             array.append([i, j, k])
     return array
-
-
-
-
