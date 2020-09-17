@@ -181,4 +181,3 @@ def aPb(a, b):
 # Returns i^x for any real x
 def i_to_the_x(a):
     return cis(pi(a) * a /2)
-
