@@ -2,11 +2,13 @@ import math
 
 # To check if a number is prime
 def is_prime(a):
+    if a==1:
+        return False
     for i in range(2, int(math.sqrt(a)) + 1):
         if a % i == 0:
             return False
-    else:
-            return True
+   
+    return True
 
 
 # A perfect number is a number which's all proper factors is equal to the number itself.
@@ -33,18 +35,10 @@ def twin_primes(a, b):
             array.append((int(i)))
     return array
 
-
 # Returns average of all primes in a Range.
 def avg_prime(a, b):
-    sum = 0
-    length = 0
-    lastNumber = 0
-    for i in range(a, b):
-        if is_prime(i):
-            length = length + 1
-            sum = sum + i - lastNumber
-            lastNumber = i
-    return float(sum)/(length - 1)
+    num_array = [i for i in range(a,b) if is_prime(i)]
+    return sum(num_array) / len(num_array)
 
 # Returns average of the endpoint primes in a Range.
 # This and and the previous function are interlinked, and both averages are pretty close.
@@ -59,26 +53,21 @@ def a2n(a):
     return f
 
 # Reverses a number.
-def reverse(a):
-    array = []
-    for i in range(1, len(str(a)) + 1):
-        array.append(str(a)[len(str(a)) - i])
-    return a2n(array)
+def reverse_num(a): #Reverse is already a python thing
+    num = str(a)[::-1]
+    return int(num)
 
 # Returns reversible primes in a range.
 def rev_prime(a, b):
     array = []
     for i in range(a, b):
-        if is_prime(i) and is_prime(reverse(i)) and i > reverse(i):
-            array.extend([i, reverse(i), "|"])
+        if is_prime(i) and is_prime(reverse_num(i)) and i > reverse_num(i):
+            array.extend([i, reverse_num(i), "|"])
     return array
 
 # Product of all numbers in an array.
 def prod(a):
-    product = 1
-    for i in range(0, len(a)):
-        product = product * a[i]
-    return product
+    return math.prod(a)
 
 # Returns Factorial of a number.
 def factorial(a):
