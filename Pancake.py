@@ -75,6 +75,7 @@ def base_k_to_base_10(a, k):
         array.append(int(fri(a)[- i - 1]) * (k ** (i)))
     return sum_array(array)
 
+# Knapsack Problem
 # Shows optimal way to distribute money with least currencies
 def ATM(a):
     array = []
