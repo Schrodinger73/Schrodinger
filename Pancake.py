@@ -1,9 +1,6 @@
 import math
 import random
 
-a = [-1, 1]
-f = [4, 3, 9, 2, 3, 5, 3, 3]
-
 # Floor function
 def floor(x):
     return math.floor(x)
