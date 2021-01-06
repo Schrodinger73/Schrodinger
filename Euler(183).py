@@ -181,3 +181,11 @@ def aPb(a, b):
 # Returns i^x for any real x
 def i_to_the_x(a):
     return cis(pi(a) * a /2)
+
+# Binomial Expansion
+def Binomial_Expansion(n):
+    s = ""
+    for i in range(0, n):
+        s += str(int(aCb(n, i))) + " x^" + str(n - i) + " y^" + str(i) + " + "
+    s = s + " y^" + str(n)
+    return "(x + y)^" + str(n) + " = " + s
