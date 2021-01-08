@@ -1,5 +1,6 @@
 import math
 import random
+import matplotlib.pyplot as plt
 
 #Basic Mathematical tools...
 
@@ -73,7 +74,7 @@ def prod(a):
 # Factorial of a number.
 def factorial(a):
     product = 1
-    for i in range(1, a + 1):
+    for i in range(1, int(a) + 1):
         product = product * i
     return product
 
@@ -99,6 +100,8 @@ def cal(z):
 def factorial_real(z):
     if int(z) != z:
         return cal(z) / (float(math.e) ** (euler(1) * z))
+    if int(z) == z and z < 0:
+        return "Undefined"
     else:
         return factorial(z)
 
@@ -187,5 +190,65 @@ def Binomial_Expansion(n):
     s = ""
     for i in range(0, n):
         s += str(int(aCb(n, i))) + " x^" + str(n - i) + " y^" + str(i) + " + "
-    s = s + " y^" + str(n)
+    s = s + "y^" + str(n)
     return "(x + y)^" + str(n) + " = " + s
+
+def Dearrangement(n):
+    sum = 0
+    for i in range(2, n + 1):
+        sum += ((-1)**i) * (1/float(factorial(i)))
+    return int(factorial(n) * sum)
+
+# list(n) = [0, 1, 2, 3, ... , n - 1]
+def list(n):
+    array = []
+    for i in range(0, n):
+        array.append(i)
+    return array
+
+# test_list(n) = [0, 0, 0, ....]
+def test_list(n):
+    array = []
+    for i in range(0, n):
+        array.append(0)
+    return array
+
+# Random arrangement of a list from 0 to n - 1
+def random_arrange(a):
+    array = []
+    ar = a.copy()
+    for i in range(0, len(a)):
+        n = random.randint(0, len(ar) - 1)
+        array.append(ar[n])
+        ar.pop(n)
+    return array
+
+# All possible arrangements/permutations of numbers 0 to n - 1
+def all_arrange(a):
+    array = []
+    count = 0
+    while len(array) < factorial(len(a)):
+        k = random_arrange(a)
+        if k not in array:
+            array.append(k)
+        if k in array:
+            count += 1
+    if len(array) == factorial(len(a)):
+        return array
+
+# To arrange a list a1 as alloted by the index in a2
+def arrange_1_list(a1, a2): # a1 is alnum, a2 is numeric list
+    array = test_list(len(a1))
+    for i in range(0, len((a1))):
+        array[a2[i]] = a1[i]
+    return array
+
+# Finally, all permutations of a
+def arrange_list(a):
+    array = []
+    a1 = a
+    a2 = list(len(a))
+    a3 = all_arrange(a2)
+    for i in range(0, len(a3)):
+        array.append(arrange_1_list(a1, a3[i]))
+    return array
